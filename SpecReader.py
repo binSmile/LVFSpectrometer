@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 
-bdir = 'C:\\Users\\al\\ExtDrive\\GlobalProjects\\STM-Electroluminescence\\ExpData\\Omicron results\\Specs\\'
+bdir = 'C:\\...\\STM-Electroluminescence\\ExpData\\Omicron results\\Specs\\'
 name = '2022-05-06_14-48-28_Si-Ag-Mica_4.0V'
 spec = name +'.xlsx'
 

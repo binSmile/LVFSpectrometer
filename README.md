@@ -43,6 +43,11 @@ I bought  an assembled actuator with step motor from Aliexpress . It has DC 4-9 
 You can find MoveControl.ino with Arduino Uno firmware and MoveControl-connection with connection layout. Also, I applied [GyverStepper2](https://alexgyver.ru/gyverstepper/). This is an excellent lib for stepper control.
 For controlling of Arduino by serial, I used a simple communication  language presented is SerialCommunication-example sketch.
 
+### Wires
+- D4 to ENA+
+- D3 to DIR+
+- D2 to PUL+
+
 ### Commands for move controlling
 Comand's structure is:
 "Device","Comand","Value"
@@ -61,26 +66,35 @@ In this case the device number is **002**
 
 
 
+## SpecAcquisition.py
+This is main programm for spectra Acusition.
+Usually, I start it from console and use comand interface for experiment proceeding.
+Todo: check stable work with long acqusition, more then 10 minutes.
+
+### Main functions
+**GoHome()** - Function for manual approaching to home position. Setup doesn't have end move buttons.
+**DoPointSpectra(points=20,exposition=2,LVFLen=12000,name=SpecName)** - this command do 20 stops during 12000 steps lenght of movement, with 2 second acuqsition on each stop.
+
+## SpecReader.py
+Simple plotter of measured spectra.
 
 
 
 
-
-
-
+## File tree
 
 .
-├── controllers
-│   ├── ESPPulseCounter-connection.svg - wire connection DAC
-│   ├── ESPPulseCounter.ino - ESP arduino-like firmware for pulse-counter DAC
-│   ├── MoveControl-connection.svg - wire connection of LVF mover
-│   ├── MoveControl.ino - firmware for LVF mover
-│   └── SerialCommunication-example.ino - example of simple commmunication between PC and arduino.
-├── models - directory with 3d-models for printing of LVF-holder.
+├── **controllers**
+│   ├── **ESPPulseCounter-connection.svg** - wire connection DAC
+│   ├── **ESPPulseCounter.ino** - ESP arduino-like firmware for pulse-counter DAC
+│   ├── **MoveControl-connection.svg** - wire connection of LVF mover
+│   ├── **MoveControl.ino** - firmware for LVF mover
+│   └── **SerialCommunication-example.ino** - example of simple commmunication between PC and arduino.
+├── **models** - directory with 3d-models for printing of LVF-holder.
 │   ├── IDQ-LD.SLDASM
 │   ├── ...
 │   └── Скоба2^LVF holder_IDQ-LD.STL
 ├── README.md
-├── Pulse_grabber.py - Loging of pulses from counter
-├── SpecAcquisition.py - programm for Spectum acqusition with LFV
-└── SpecReader.py
+├── **Pulse_grabber.py** - Loging of pulses from counter
+├── **SpecAcquisition.py** - programm for Spectum acqusition with LFV
+└── **SpecReader.py**

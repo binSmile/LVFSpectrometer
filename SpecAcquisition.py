@@ -1,7 +1,5 @@
-
 import time
 from datetime import datetime
-
 import serial
 import numpy as np
 import pandas as pd
@@ -9,10 +7,11 @@ from _testcapi import Generic
 from matplotlib import pyplot as plt
 
 
-
-# [5846.0, 2944, 30.627535994394872]
-
 def test013():
+    """
+    Test script for blinking LED on Ardunino
+    :return: None
+    """
     ser.write(b'013,on')
     time.sleep(1)
     ser.write(b'013,off')
@@ -23,6 +22,11 @@ def test013():
 
 
 def Move(steps):
+    """
+    Just move
+    :param steps: forward for positive, and backward for negative
+    :return: None
+    """
     print('Move to: ', steps)
     p0 = GetState()
     steps = int(steps)
@@ -51,6 +55,10 @@ def Move(steps):
 
 
 def GoHome():
+    """
+    Function for manual approaching to home position
+    :return:
+    """
     print('Write 0 if stepper at the home or -1 if stepper at the end.')
     steps = 1
     while steps != 0:
@@ -65,12 +73,16 @@ def GoHome():
     print('Okey. We at home.')
 
 
-def GetCounts(exposition):
-    time.sleep(exposition)
-    return 0
-
 
 def DoPointSpectra(points, exposition, LVFLen, name='Test'):
+    """
+    Main function for getting spectrum
+    :param points:     stops counts on the move range
+    :param exposition: time in seconds signal collection
+    :param LVFLen:     range of move along LVF
+    :param name:       name for save file
+    :return: DataFrame with spectra in each point
+    """
     # GoHome()
     HomePosition = GetState()
     start = datetime.now()
@@ -161,7 +173,12 @@ def GetState():
 
 
 def Acquisition(atime):
-    # atime in seconds
+    """
+    Acuisituion of intensity from pulse counter.
+    :param atime: time in sec
+    :return: [np.median(Acq), len(Acq), Acq.std(), np.mean(Acq)]
+    """
+
     i = 0
     t_end = time.time() + atime
 
@@ -181,32 +198,37 @@ def Acquisition(atime):
 
 
 def FalseGet():
+    """It need sometime, when you don't use serial port during the long time, you must flush it, before normal working"""
     sercount.flushInput()
     sercount.flushOutput()
     sercount.readline()[:-2].decode('utf-8')
 
 
 if __name__ == '__main__':
-    bbdir = 'C:\\Users\\al\\ExtDrive\\GlobalProjects\\STM-Electroluminescence\\ExpData\\Omicron results\\'
+    bbdir = 'C:\\..\\GlobalProjects\\STM-Electroluminescence\\ExpData\\Omicron results\\'
     bdir = bbdir + 'PulseGrabber\\'
     specdir = bbdir + 'Specs\\'
-    # ArduFile = bbdir + 'PulseCounterProgramm\\PulseCounterProgramm.ino'
 
-    LVFport = 'COM8'
+    LVFport = 'COM8'        # Port to move controller
+    PulsePerRev = 800       # Step Driver regime
+    PCounterPort = 'COM7'   # Port to Pulse counter
+
+    # LVFLen = 16 * PulsePerRev * 0.95
+    LVFLen = 500            # Length of holder shadow in steps
+    FullLen = 7360          # Length of usefull part of LVF
+
+
+    # Connect to pulse mover
     ser = serial.Serial(LVFport, 2000000, timeout=1)
-    PulsePerRev = 800
-    print('Step Driver set at 800 pulse/rev')
-
-    PCounterPort = 'COM7'
+    print('Step Driver set at %s pulse/rev' % PulsePerRev )
+    # Connect to pulse counter
     sercount = serial.Serial(PCounterPort, 115200, timeout=1)
 
     # test013()
     # GoHome()
 
-    # LVFLen = 16 * PulsePerRev * 0.95
-    LVFLen = 500
-    FullLen = 7360
-    # Move(10000)
+
+    Move(10000)
 
     # spec = DoPointSpectra(points=50,exposition=1,LVFLen=LVFLen)
     # DoPointSpectra(points=5,exposition=1,LVFLen=100)
