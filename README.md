@@ -1,4 +1,8 @@
 # LVFSpectrometer
+Youtube video with halogen lamp, LVF-filter, and fiber spectrometer behind LFV:
+
+[![Watch the video](https://img.youtube.com/vi/VhedL_mU17M/mqdefault.jpg)](https://youtu.be/VhedL_mU17M)
+
  Spectrometer based on linear variable filter with pulse-counter
 
 The main idea was born, from need on spectral measurements of really weak light source (Scanning Tunneling Microscopy Light Emission).
@@ -53,16 +57,16 @@ Comand's structure is:
 "Device","Comand","Value"
 In this case the device number is **002**
 
-**002,brake,0** - stop
-**002,move,777** movo on 777 steps forward
-**002,setspeed,-666** backward movement with speed 666 steps per piece of time
-**002,reset,0** set zero position 0
+- **002,brake,0** - stop
+- **002,move,777** movo on 777 steps forward
+- **002,setspeed,-666** backward movement with speed 666 steps per piece of time
+- **002,reset,0** set zero position 0
 
 #### Service commands:
-**002,ready,0** return **m** - move, **r** - ready
-**002,Current,0** curent position
-**002,getStatus,0** 
-**002,setaccel,333** - you can set acceleration in step per sec^2. Set Zero is means movement with maximal speed, without smooth acceleration.
+- **002,ready,0** return **m** - move, **r** - ready
+- **002,Current,0** curent position
+- **002,getStatus,0** 
+- **002,setaccel,333** - you can set acceleration in step per sec^2. Set Zero is means movement with maximal speed, without smooth acceleration.
 
 
 
@@ -72,8 +76,8 @@ Usually, I start it from console and use comand interface for experiment proceed
 Todo: check stable work with long acqusition, more then 10 minutes.
 
 ### Main functions
-**GoHome()** - Function for manual approaching to home position. Setup doesn't have end move buttons.
-**DoPointSpectra(points=20,exposition=2,LVFLen=12000,name=SpecName)** - this command do 20 stops during 12000 steps lenght of movement, with 2 second acuqsition on each stop.
+- **GoHome()** - Function for manual approaching to home position. Setup doesn't have end move buttons.
+- **DoPointSpectra(points=20,exposition=2,LVFLen=12000,name=SpecName)** - this command do 20 stops during 12000 steps lenght of movement, with 2 second acuqsition on each stop.
 
 ## SpecReader.py
 Simple plotter of measured spectra.
@@ -82,19 +86,20 @@ Simple plotter of measured spectra.
 
 
 ## File tree
-
+```
 .
-├── **controllers**
-│   ├── **ESPPulseCounter-connection.svg** - wire connection DAC
-│   ├── **ESPPulseCounter.ino** - ESP arduino-like firmware for pulse-counter DAC
-│   ├── **MoveControl-connection.svg** - wire connection of LVF mover
-│   ├── **MoveControl.ino** - firmware for LVF mover
-│   └── **SerialCommunication-example.ino** - example of simple commmunication between PC and arduino.
-├── **models** - directory with 3d-models for printing of LVF-holder.
+├── controllers
+│   ├── ESPPulseCounter-connection.svg - wire connection DAC
+│   ├── ESPPulseCounter.ino - ESP arduino-like firmware for pulse-counter DAC
+│   ├── MoveControl-connection.svg - wire connection of LVF mover
+│   ├── MoveControl.ino - firmware for LVF mover
+│   └── SerialCommunication-example.ino - example of simple commmunication between PC and arduino.
+├── models - directory with 3d-models for printing of LVF-holder.
 │   ├── IDQ-LD.SLDASM
 │   ├── ...
 │   └── Скоба2^LVF holder_IDQ-LD.STL
 ├── README.md
-├── **Pulse_grabber.py** - Loging of pulses from counter
-├── **SpecAcquisition.py** - programm for Spectum acqusition with LFV
-└── **SpecReader.py**
+├── Pulse_grabber.py - Loging of pulses from counter
+├── SpecAcquisition.py - programm for Spectum acqusition with LFV
+└── SpecReader.py
+```
