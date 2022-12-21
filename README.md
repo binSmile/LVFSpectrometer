@@ -1,7 +1,9 @@
 # LVFSpectrometer
-Youtube video with halogen lamp, LVF-filter, and fiber spectrometer behind LFV:
+[<img src="https://images2.imgbox.com/a9/fb/PXq0IYTD_o.jpg" width="400">
+](https://www.youtube.com/watch?v=VhedL_mU17M)
 
-[![Watch the video](https://img.youtube.com/vi/VhedL_mU17M/mqdefault.jpg)](https://youtu.be/VhedL_mU17M)
+
+
 
  Spectrometer based on linear variable filter with pulse-counter
 
@@ -37,6 +39,7 @@ This program writes counts to txt file and zip it in the end of work.
 I had a linear Variable Filter by Ocean Optics (You can read more here [https://www.oceaninsight.com/products/sampling-accessories/solid-sampling/linear-variable/lvf-hh/?qty=1](Ocean Insight)). 
 
 ## 3D-models
+<img src="https://raw.githubusercontent.com/binSmile/LVFSpectrometer/main/models/images/LVF%20mover%20and%20holder.jpg" alt="drawing" width="400"/>
 You can find models created in SolidWorks, I share to you the holder of LVF filter, and cage-holder for step-motor actuator.
 If you plan to use it,  I recommend to you: paint model to black color,  and modify it for decreasing of shadows on light path. Also, in one of edge position, you will have touch of LVF-holder  with cage.
 
@@ -58,7 +61,7 @@ Comand's structure is:
 In this case the device number is **002**
 
 - **002,brake,0** - stop
-- **002,move,777** movo on 777 steps forward
+- **002,move,777** move on 777 steps forward
 - **002,setspeed,-666** backward movement with speed 666 steps per piece of time
 - **002,reset,0** set zero position 0
 
@@ -88,18 +91,17 @@ Simple plotter of measured spectra.
 ## File tree
 ```
 .
-├── controllers
-│   ├── ESPPulseCounter-connection.svg - wire connection DAC
-│   ├── ESPPulseCounter.ino - ESP arduino-like firmware for pulse-counter DAC
-│   ├── MoveControl-connection.svg - wire connection of LVF mover
-│   ├── MoveControl.ino - firmware for LVF mover
-│   └── SerialCommunication-example.ino - example of simple commmunication between PC and arduino.
-├── models - directory with 3d-models for printing of LVF-holder.
+├── controllers                           - firmwares
+│   ├── ESPPulseCounter-connection.svg    - wire connection DAC
+│   ├── ESPPulseCounter.ino - ESP arduino - like firmware for pulse-counter DAC
+│   ├── MoveControl-connection.svg        - wire connection of LVF mover
+│   ├── MoveControl.ino                   - firmware for LVF mover
+│   └── SerialCommunication-example.ino   - example of simple commmunication between PC and arduino.
+├── models                                - directory with 3d-models for printing of LVF-holder.
 │   ├── IDQ-LD.SLDASM
-│   ├── ...
-│   └── Скоба2^LVF holder_IDQ-LD.STL
+│   └── ...
 ├── README.md
-├── Pulse_grabber.py - Loging of pulses from counter
-├── SpecAcquisition.py - programm for Spectum acqusition with LFV
-└── SpecReader.py
+├── Pulse_grabber.py                      - Loging of pulses from counter
+├── SpecAcquisition.py                    - programm for Spectum acqusition with LFV
+└── SpecReader.py                         - Simple plotter
 ```
