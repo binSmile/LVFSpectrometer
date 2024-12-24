@@ -36,7 +36,7 @@ At the first time, I used simple python serial port grabber for collection infor
 This program writes counts to txt file and zip it in the end of work.
 
 ## Linear Variable Filter
-I had a linear Variable Filter by Ocean Optics (You can read more here [https://www.oceaninsight.com/products/sampling-accessories/solid-sampling/linear-variable/lvf-hh/?qty=1](Ocean Insight)). 
+I had a linear Variable Filter by Ocean Optics (You can read more here (Ocean Insight)[https://www.oceaninsight.com/products/sampling-accessories/solid-sampling/linear-variable/lvf-hh/?qty=1]). 
 
 ## 3D-models
 <img src="https://raw.githubusercontent.com/binSmile/LVFSpectrometer/main/models/images/LVF%20mover%20and%20holder.jpg" alt="drawing" width="400"/>
