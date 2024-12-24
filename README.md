@@ -24,7 +24,7 @@ Let's describe each part.
 ## DAC and pulse counter
 In folder **Controllers**, you found ESPPulseCounter.ino - firmware for ESP8266. 
 Previously it works on Arduino too, but it has some lags and minimal pulses integration time was 20 ms. ESP8266 - works better, the best time is 7 ms.
-Before write firmware to ESP, you must set integration time, and minimum and maximum counting levels in Hz (counts per second), which correspond to 0V and 5V levels on DAC.
+Before flashing firmware to ESP, you should set integration time, and minimum and maximum counting levels in Hz (counts per second), which correspond to 0V and 5V levels on DAC.
 
 The main problem of counting pulses from is very short pulses from APD. Output pulse width is 25 **ns**. 
 For counting, I use M74HC4040 (or SN74HC4040N) 12-Bit Asynchronous Binary Counters. And collect the number by MCP23017, 16-bit input/output port expander.  The ESP reads the number for one clock from port-extender. After that, the number was sent to serial and to MCP4725 12-bit DAC.
